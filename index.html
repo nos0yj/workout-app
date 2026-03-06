@@ -43,6 +43,12 @@
         var list = document.querySelector(".peepee");
         exercises.forEach(function (exercise) {
           var li = document.createElement("li");
+          li.style.cursor = "pointer";
+          li.onclick = function (e) {
+            if (e.target.tagName !== "BUTTON") {
+              li.classList.toggle("completed");
+            }
+          };
           li.textContent = exercise;
 
           var deleteBtn = document.createElement("button");
@@ -80,6 +86,8 @@
       }
 
       var newWorkout = document.createElement("li");
+      newWorkout.style.cursor = "pointer";
+
       var setsValue = document.getElementById("sets-input").value;
       var reps = setsValue !== "" ? setsValue : "3";
       newWorkout.textContent = exerciseName + " - " + reps + " sets of 10 reps";
@@ -93,6 +101,12 @@
         saveExercises();
       };
       newWorkout.appendChild(deleteBtn);
+
+      newWorkout.onclick = function (e) {
+        if (e.target !== "BUTTON") {
+          newWorkout.classList.toggle("completed");
+        }
+      };
 
       var firstList = document.querySelector(".peepee");
       firstList.appendChild(newWorkout);
